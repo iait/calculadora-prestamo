@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class PersonaPkEntity implements Serializable {
+public class UsuarioPkEntity implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
@@ -16,7 +16,7 @@ public class PersonaPkEntity implements Serializable {
     @Column(name = "numero_documento")
     private Long numeroDocumento;
     
-    public PersonaPkEntity() {}
+    public UsuarioPkEntity() {}
     
     public Long getTipoDocumentoId() {
         return tipoDocumentoId;
@@ -48,10 +48,10 @@ public class PersonaPkEntity implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof PersonaPkEntity)) {
+        if (!(obj instanceof UsuarioPkEntity)) {
             return false;
         }
-        PersonaPkEntity other = (PersonaPkEntity) obj;
+        UsuarioPkEntity other = (UsuarioPkEntity) obj;
         if (numeroDocumento == null) {
             if (other.numeroDocumento != null) {
                 return false;
