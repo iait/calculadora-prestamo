@@ -5,7 +5,10 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,8 +21,9 @@ public class PrestamoEntity {
     @Column(name = "fecha_alta")
     private LocalDate fechaAlta;
     
-    @Column(name = "linea_id")
-    private Long lineaId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "linea_id", referencedColumnName = "linea_id", nullable = false)
+    private LineaEntity linea;
     
     @Column(name = "usuario_tipo_documento_id")
     private TipoDocumentoEntity usuarioTipoDocumento;
@@ -57,12 +61,12 @@ public class PrestamoEntity {
         this.fechaAlta = fechaAlta;
     }
     
-    public Long getLineaId() {
-        return lineaId;
+    public LineaEntity getLinea() {
+        return linea;
     }
     
-    public void setLineaId(Long lineaId) {
-        this.lineaId = lineaId;
+    public void setLinea(LineaEntity linea) {
+        this.linea = linea;
     }
     
     public TipoDocumentoEntity getUsuarioTipoDocumento() {
