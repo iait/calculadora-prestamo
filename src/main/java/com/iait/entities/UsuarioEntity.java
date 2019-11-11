@@ -5,7 +5,8 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,15 +14,14 @@ import javax.persistence.Table;
 public class UsuarioEntity {
     
     @EmbeddedId
-    private UsuarioPkEntity pk;
+    private PersonaPkEntity pk;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_tipodocumento", referencedColumnName = "id_tipodocumento",
-            nullable = false, insertable = false, updatable = false)
-    private TipoDocumentoEntity tipoDocumento;
-    
-    @Column(name = "numero_documento", nullable = false, insertable = false, updatable = false)
-    private Long numeroDocumento;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumns({ 
+            @JoinColumn(name = "id_tipousuario", referencedColumnName = "id_tipousuario"),
+            @JoinColumn(name = "numero_documento", referencedColumnName = "numero_documento")
+    })
+    private PersonaEntity persona;
     
     @Column(name = "nombre_usuario", nullable = false, length = 50)
     private String nombre;
@@ -31,20 +31,14 @@ public class UsuarioEntity {
     
     public UsuarioEntity() {}
     
-    public TipoDocumentoEntity getTipoDocumento() {
-        return tipoDocumento;
+    public PersonaEntity getPersona() {
+        return persona;
     }
     
-    public void setTipoDocumento(TipoDocumentoEntity tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
-    }
-    
-    public Long getNumeroDocumento() {
-        return numeroDocumento;
-    }
-    
-    public void setNumeroDocumento(Long numeroDocumento) {
-        this.numeroDocumento = numeroDocumento;
+    public void setPersona(PersonaEntity persona) {
+        this.persona = persona;
+        pk.setTipoDocumentoId(persona.getTipoDocumento().getId());
+        pk.setNumeroDocumento(persona.getNumeroDocumento());
     }
     
     public String getNombre() {
@@ -92,6 +86,6 @@ public class UsuarioEntity {
     
     @Override
     public String toString() {
-        return "UsuarioEntity [numeroDocumento=" + numeroDocumento + ", nombre=" + nombre + "]";
+        return "UsuarioEntity [nombre=" + nombre + "]";
     }
 }
