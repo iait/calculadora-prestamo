@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -25,11 +26,15 @@ public class PrestamoEntity {
     @JoinColumn(name = "linea_id", referencedColumnName = "linea_id", nullable = false)
     private LineaEntity linea;
     
-    @Column(name = "usuario_tipo_documento_id")
-    private TipoDocumentoEntity usuarioTipoDocumento;
-    
-    @Column(name = "usuario_numero_documento")
-    private Long usuarioNumeroDocumento;
+    @ManyToOne
+    @JoinColumns({
+            @JoinColumn(
+                    name = "usuario_tipo_documento", referencedColumnName = "id_tipodocumento", 
+                    nullable = false),
+            @JoinColumn(
+                    name = "usuario_numero_documento", referencedColumnName = "numero_documento", 
+                    nullable = false) })
+    private UsuarioEntity usuario;
     
     @Column(name = "tea")
     private BigDecimal tea;
@@ -69,20 +74,12 @@ public class PrestamoEntity {
         this.linea = linea;
     }
     
-    public TipoDocumentoEntity getUsuarioTipoDocumento() {
-        return usuarioTipoDocumento;
+    public UsuarioEntity getUsuario() {
+        return usuario;
     }
     
-    public void setUsuarioTipoDocumento(TipoDocumentoEntity usuarioTipoDocumento) {
-        this.usuarioTipoDocumento = usuarioTipoDocumento;
-    }
-    
-    public Long getUsuarioNumeroDocumento() {
-        return usuarioNumeroDocumento;
-    }
-    
-    public void setUsuarioNumeroDocumento(Long usuarioNumeroDocumento) {
-        this.usuarioNumeroDocumento = usuarioNumeroDocumento;
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
     }
     
     public BigDecimal getTea() {
@@ -146,7 +143,6 @@ public class PrestamoEntity {
     
     @Override
     public String toString() {
-        return "PrestamoEntity [id=" + id + ", fechaAlta=" + fechaAlta + ", usuarioNumeroDocumento="
-                + usuarioNumeroDocumento + "]";
+        return "PrestamoEntity [id=" + id + ", fechaAlta=" + fechaAlta + "]";
     }
 }

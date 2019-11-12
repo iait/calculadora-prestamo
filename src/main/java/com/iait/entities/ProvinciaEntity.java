@@ -1,10 +1,12 @@
 package com.iait.entities;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.iait.converters.RegionConverter;
 import com.iait.enums.RegionEnum;
 
 @Entity
@@ -18,6 +20,7 @@ public class ProvinciaEntity {
     @Column(name = "nombre", unique = true, length = 400, nullable = false)
     private String nombre;
     
+    @Convert(converter = RegionConverter.class)
     @Column(name = "region", length = 3, nullable = false)
     private RegionEnum region;
     

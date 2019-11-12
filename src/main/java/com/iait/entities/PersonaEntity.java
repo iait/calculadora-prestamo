@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.iait.converters.GeneroConverter;
 import com.iait.enums.GeneroEnum;
 
 @Entity
@@ -35,6 +37,7 @@ public class PersonaEntity {
     @Column(name = "fecha_nacimiento", nullable = false)
     private LocalDateTime fechaNacimiento;
     
+    @Convert(converter = GeneroConverter.class)
     @Column(name = "genero", nullable = false, length = 1)
     private GeneroEnum genero;
     

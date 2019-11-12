@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,8 +18,9 @@ public class UsuarioEntity {
     private PersonaPkEntity pk;
     
     @OneToOne(fetch = FetchType.LAZY)
+    @MapsId("pk")
     @JoinColumns({ 
-            @JoinColumn(name = "id_tipousuario", referencedColumnName = "id_tipousuario"),
+            @JoinColumn(name = "id_tipodocumento", referencedColumnName = "id_tipodocumento"),
             @JoinColumn(name = "numero_documento", referencedColumnName = "numero_documento")
     })
     private PersonaEntity persona;

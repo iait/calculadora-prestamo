@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.iait.converters.SistemaAmortizacionConverter;
 import com.iait.enums.SistemaAmortizacionEnum;
 
 @Entity
@@ -24,6 +26,7 @@ public class LineaEntity {
     @Column(name = "nombre", nullable = false, length = 200)
     private String nombre;
     
+    @Convert(converter = SistemaAmortizacionConverter.class)
     @Column(name = "sistema_amortizacion", nullable = false, length = 1)
     private SistemaAmortizacionEnum sistemaAmortizacion;
     

@@ -1,26 +1,31 @@
 package com.iait;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.iait.repositories.ProvinciaRepository;
 
 public class App {
     
+    public static final ApplicationContext CONTEXT;
+    
+    static {
+        CONTEXT = new ClassPathXmlApplicationContext("app-config.xml");
+    }
+    
     public static void main(String[] args) {
-        App app = new App();
+        App app = CONTEXT.getBean(App.class);
         app.run();
     }
     
+    @Autowired
+    ProvinciaRepository provinciaRepository;
+    
     public void run() {
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("calculadora-prestamo");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        
-        int size = em.createNativeQuery("select * from localidades;").getResultList().size();
-        System.out.println(size);
-        
-        em.getTransaction().commit();
-        em.close();
+        provinciaRepository.findAll().forEach(provinciaEntity -> {
+            System.out.println("Provincia: " +  provinciaEntity);
+        });
     }
 }

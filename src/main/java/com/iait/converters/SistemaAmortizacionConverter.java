@@ -1,11 +1,9 @@
 package com.iait.converters;
 
 import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 
 import com.iait.enums.SistemaAmortizacionEnum;
 
-@Converter(autoApply = true)
 public class SistemaAmortizacionConverter 
         implements AttributeConverter<SistemaAmortizacionEnum, Character> {
     
