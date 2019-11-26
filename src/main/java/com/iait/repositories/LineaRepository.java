@@ -5,10 +5,10 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.iait.entities.ProvinciaEntity;
+import com.iait.entities.LineaEntity;
 
-public interface ProvinciaRepository extends JpaRepository<ProvinciaEntity, Long> {
+public interface LineaRepository extends JpaRepository<LineaEntity, Long> {
     
-    @Query("select max(e.id) from ProvinciaEntity e")
+    @Query("select max(e.id) from LineaEntity e")
     Optional<Long> getMax();
 }
