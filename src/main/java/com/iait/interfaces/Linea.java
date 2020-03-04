@@ -1,10 +1,10 @@
-package com.iait.dtos;
+package com.iait.interfaces;
 
 import java.math.BigDecimal;
 
 import com.iait.enums.SistemaAmortizacionEnum;
 
-public interface LineaDto {
+public interface Linea {
     
     String getNombre();
     

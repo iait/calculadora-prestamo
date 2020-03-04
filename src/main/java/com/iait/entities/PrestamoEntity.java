@@ -48,7 +48,8 @@ public class PrestamoEntity {
     @Column(name = "total_intereses")
     private BigDecimal totalIntereses;
     
-    public PrestamoEntity() {}
+    public PrestamoEntity() {
+    }
     
     public Long getId() {
         return id;

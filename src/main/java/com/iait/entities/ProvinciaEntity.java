@@ -24,7 +24,8 @@ public class ProvinciaEntity {
     @Column(name = "region", length = 3, nullable = false)
     private RegionEnum region;
     
-    public ProvinciaEntity() {}
+    public ProvinciaEntity() {
+    }
     
     public Long getId() {
         return id;

@@ -2,16 +2,19 @@ package com.iait.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.iait.dtos.ProvinciaDto;
 import com.iait.entities.ProvinciaEntity;
+import com.iait.entities.QProvinciaEntity;
+import com.iait.interfaces.Provincia;
 import com.iait.repositories.ProvinciaRepository;
-import com.iait.utils.ExceptionUtils;
+import com.iait.utiles.ExceptionUtils;
+import com.querydsl.core.types.dsl.BooleanExpression;
 
 @Service
 public class ProvinciaService {
@@ -29,8 +32,15 @@ public class ProvinciaService {
         return repository.findAll();
     }
     
+    @Transactional(readOnly = true)
+    public List<ProvinciaEntity> buscar(Function<QProvinciaEntity, BooleanExpression> fun) {
+        QProvinciaEntity q = QProvinciaEntity.provinciaEntity;
+        BooleanExpression expr = fun.apply(q);
+        return (List<ProvinciaEntity>) repository.findAll(expr);
+    }
+    
     @Transactional
-    public ProvinciaEntity alta(ProvinciaDto dto) {
+    public ProvinciaEntity alta(Provincia dto) {
         
         ProvinciaEntity provincia = new ProvinciaEntity();
         
@@ -43,7 +53,7 @@ public class ProvinciaService {
     }
     
     @Transactional
-    public ProvinciaEntity actualizar(Long id, ProvinciaDto dto) {
+    public ProvinciaEntity actualizar(Long id, Provincia dto) {
         
         ProvinciaEntity provincia = repository.findById(id).orElseThrow(exceptionSupplier(id));
         
@@ -62,6 +72,6 @@ public class ProvinciaService {
     }
     
     private Supplier<? extends RuntimeException> exceptionSupplier(Long id) {
-        return ExceptionUtils.exceptionSupplier("No existe la provincia con id %s", id);
+        return ExceptionUtils.notFoundExceptionSupplier("No existe la provincia con id %s", id);
     }
 }

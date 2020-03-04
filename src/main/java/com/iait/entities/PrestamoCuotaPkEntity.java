@@ -16,7 +16,8 @@ public class PrestamoCuotaPkEntity implements Serializable {
     @Column(name = "nro_cuota")
     private Long nroCuota;
     
-    public PrestamoCuotaPkEntity() {}
+    public PrestamoCuotaPkEntity() {
+    }
     
     public Long getPrestamoId() {
         return prestamoId;

@@ -60,7 +60,8 @@ public class LineaEntity {
     })
     private UsuarioEntity usuario;
     
-    public LineaEntity() {}
+    public LineaEntity() {
+    }
     
     public Long getId() {
         return id;

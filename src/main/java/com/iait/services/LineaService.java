@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.iait.dtos.LineaDto;
 import com.iait.entities.LineaEntity;
+import com.iait.interfaces.Linea;
 import com.iait.repositories.LineaRepository;
-import com.iait.utils.ExceptionUtils;
+import com.iait.utiles.ExceptionUtils;
 
 @Service
 public class LineaService {
@@ -31,7 +31,7 @@ public class LineaService {
     }
     
     @Transactional
-    public LineaEntity alta(LineaDto dto) {
+    public LineaEntity alta(Linea dto) {
         
         LineaEntity linea = new LineaEntity();
         
@@ -51,7 +51,7 @@ public class LineaService {
     }
     
     @Transactional
-    public LineaEntity actualizar(Long id, LineaDto dto) {
+    public LineaEntity actualizar(Long id, Linea dto) {
         
         LineaEntity linea = repository.findById(id).orElseThrow(exceptionSupplier(id));
         
@@ -76,6 +76,6 @@ public class LineaService {
     }
     
     private Supplier<? extends RuntimeException> exceptionSupplier(Long id) {
-        return ExceptionUtils.exceptionSupplier("No existe la línea con id %s", id);
+        return ExceptionUtils.notFoundExceptionSupplier("No existe la línea con id %s", id);
     }
 }

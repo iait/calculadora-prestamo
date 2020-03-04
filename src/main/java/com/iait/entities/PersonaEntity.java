@@ -58,7 +58,8 @@ public class PersonaEntity {
     @Column(name = "codigo_postal", nullable = false, length = 10)
     private String codigoPostal;
     
-    public PersonaEntity() {}
+    public PersonaEntity() {
+    }
     
     public TipoDocumentoEntity getTipoDocumento() {
         return tipoDocumento;

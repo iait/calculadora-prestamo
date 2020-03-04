@@ -25,7 +25,8 @@ public class LocalidadEntity {
     @Column(name = "codigo_postal", nullable = false, length = 10)
     private String codigoPostal;
     
-    public LocalidadEntity() {}
+    public LocalidadEntity() {
+    }
     
     public Long getId() {
         return id;

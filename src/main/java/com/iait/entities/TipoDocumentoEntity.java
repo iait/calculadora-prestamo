@@ -21,7 +21,8 @@ public class TipoDocumentoEntity {
     @Column(name = "validar_como_cuit", nullable = false)
     private Boolean validarComoCuit;
     
-    public TipoDocumentoEntity() {}
+    public TipoDocumentoEntity() {
+    }
     
     public Long getId() {
         return id;

@@ -16,7 +16,8 @@ public class PersonaPkEntity implements Serializable {
     @Column(name = "numero_documento")
     private Long numeroDocumento;
     
-    public PersonaPkEntity() {}
+    public PersonaPkEntity() {
+    }
     
     public Long getTipoDocumentoId() {
         return tipoDocumentoId;

@@ -34,7 +34,8 @@ public class PrestamoCuotaEntity {
     @Column(name = "importe_total")
     private BigDecimal importeTotal;
     
-    public PrestamoCuotaEntity() {}
+    public PrestamoCuotaEntity() {
+    }
     
     public PrestamoEntity getPrestamo() {
         return prestamo;

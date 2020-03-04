@@ -31,7 +31,8 @@ public class UsuarioEntity {
     @Column(name = "hashed_pwd", nullable = false, length = 200)
     private String hashedPwd;
     
-    public UsuarioEntity() {}
+    public UsuarioEntity() {
+    }
     
     public PersonaEntity getPersona() {
         return persona;
