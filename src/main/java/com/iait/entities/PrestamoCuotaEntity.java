@@ -1,6 +1,7 @@
 package com.iait.entities;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -10,11 +11,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.querydsl.core.annotations.PropertyType;
+import com.querydsl.core.annotations.QueryType;
+
 @Entity
 @Table(name = "prestamos_cuotas")
 public class PrestamoCuotaEntity {
     
     @EmbeddedId
+    @QueryType(PropertyType.NONE)
     private PrestamoCuotaPkEntity pk;
     
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,14 +30,20 @@ public class PrestamoCuotaEntity {
     @Column(name = "nro_cuota", nullable = false, insertable = false, updatable = false)
     private Long nroCuota;
     
-    @Column(name = "importe_capital")
-    private BigDecimal importeCapital;
+    @Column(name = "fecha_vencimiento", nullable = false)
+    private LocalDate fechaVencimiento;
     
-    @Column(name = "importe_interes")
-    private BigDecimal importeInteres;
+    @Column(name = "importe_capital", nullable = false)
+    private BigDecimal capital;
     
-    @Column(name = "importe_total")
-    private BigDecimal importeTotal;
+    @Column(name = "importe_intereses", nullable = false)
+    private BigDecimal interes;
+    
+    @Column(name = "importe_total", nullable = false)
+    private BigDecimal total;
+
+    @Column(name = "saldo_capital", nullable = false)
+    private BigDecimal saldoCapital;
     
     public PrestamoCuotaEntity() {
     }
@@ -55,30 +66,46 @@ public class PrestamoCuotaEntity {
         pk.setNroCuota(nroCuota);
     }
     
-    public BigDecimal getImporteCapital() {
-        return importeCapital;
+    public LocalDate getFechaVencimiento() {
+        return fechaVencimiento;
     }
-    
-    public void setImporteCapital(BigDecimal importeCapital) {
-        this.importeCapital = importeCapital;
+
+    public void setFechaVencimiento(LocalDate fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
     }
-    
-    public BigDecimal getImporteInteres() {
-        return importeInteres;
+
+    public BigDecimal getCapital() {
+        return capital;
     }
-    
-    public void setImporteInteres(BigDecimal importeInteres) {
-        this.importeInteres = importeInteres;
+
+    public void setCapital(BigDecimal capital) {
+        this.capital = capital;
     }
-    
-    public BigDecimal getImporteTotal() {
-        return importeTotal;
+
+    public BigDecimal getInteres() {
+        return interes;
     }
-    
-    public void setImporteTotal(BigDecimal importeTotal) {
-        this.importeTotal = importeTotal;
+
+    public void setInteres(BigDecimal interes) {
+        this.interes = interes;
     }
-    
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public BigDecimal getSaldoCapital() {
+        return saldoCapital;
+    }
+
+    public void setSaldoCapital(BigDecimal saldoCapital) {
+        this.saldoCapital = saldoCapital;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -105,10 +132,9 @@ public class PrestamoCuotaEntity {
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
-        return "PrestamoCuotaEntity [nroCuota=" + nroCuota + ", importeCapital=" + importeCapital 
-                + ", importeInteres=" + importeInteres + ", importeTotal=" + importeTotal + "]";
+        return "PrestamoCuotaEntity [pk=" + pk + "]";
     }
 }

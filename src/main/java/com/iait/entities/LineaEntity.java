@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import com.iait.converters.SistemaAmortizacionConverter;
 import com.iait.enums.SistemaAmortizacionEnum;
+import com.iait.enums.TasaTipoEnum;
+import com.iait.enums.UnidadAmortizacionEnum;
 
 @Entity
 @Table(name = "lineas")
@@ -30,6 +32,18 @@ public class LineaEntity {
     @Column(name = "sistema_amortizacion", nullable = false, length = 1)
     private SistemaAmortizacionEnum sistemaAmortizacion;
     
+    @Column(name = "tasa_tipo", nullable = false, length = 1)
+    private TasaTipoEnum tasaTipo;
+    
+    @Column(name = "tasa_modulo", nullable = false)
+    private Integer tasaModulo;
+
+    @Column(name = "amortizacion_periodo", nullable = false)
+    private Integer amortizacionPeriodo;
+
+    @Column(name = "amortizacion_unidad", nullable = false)
+    private UnidadAmortizacionEnum amortizacionUnidad;
+
     @Column(name = "tasa_min", nullable = false)
     private BigDecimal tasaMinima;
     
@@ -37,10 +51,10 @@ public class LineaEntity {
     private BigDecimal tasaMaxima;
     
     @Column(name = "cuotas_min", nullable = false)
-    private Long cuotasMinimas;
+    private Integer cuotasMinimas;
     
     @Column(name = "cuotas_max", nullable = false)
-    private Long cuotasMaximas;
+    private Integer cuotasMaximas;
     
     @Column(name = "capital_min", nullable = false)
     private BigDecimal capitalMinimo;
@@ -66,91 +80,123 @@ public class LineaEntity {
     public Long getId() {
         return id;
     }
-    
+
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
-    
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     public SistemaAmortizacionEnum getSistemaAmortizacion() {
         return sistemaAmortizacion;
     }
-    
+
     public void setSistemaAmortizacion(SistemaAmortizacionEnum sistemaAmortizacion) {
         this.sistemaAmortizacion = sistemaAmortizacion;
     }
-    
+
+    public TasaTipoEnum getTasaTipo() {
+        return tasaTipo;
+    }
+
+    public void setTasaTipo(TasaTipoEnum tasaTipo) {
+        this.tasaTipo = tasaTipo;
+    }
+
+    public Integer getTasaModulo() {
+        return tasaModulo;
+    }
+
+    public void setTasaModulo(Integer tasaModulo) {
+        this.tasaModulo = tasaModulo;
+    }
+
+    public Integer getAmortizacionPeriodo() {
+        return amortizacionPeriodo;
+    }
+
+    public void setAmortizacionPeriodo(Integer amortizacionPeriodo) {
+        this.amortizacionPeriodo = amortizacionPeriodo;
+    }
+
+    public UnidadAmortizacionEnum getAmortizacionUnidad() {
+        return amortizacionUnidad;
+    }
+
+    public void setAmortizacionUnidad(UnidadAmortizacionEnum amortizacionUnidad) {
+        this.amortizacionUnidad = amortizacionUnidad;
+    }
+
     public BigDecimal getTasaMinima() {
         return tasaMinima;
     }
-    
+
     public void setTasaMinima(BigDecimal tasaMinima) {
         this.tasaMinima = tasaMinima;
     }
-    
+
     public BigDecimal getTasaMaxima() {
         return tasaMaxima;
     }
-    
+
     public void setTasaMaxima(BigDecimal tasaMaxima) {
         this.tasaMaxima = tasaMaxima;
     }
-    
-    public Long getCuotasMinimas() {
+
+    public Integer getCuotasMinimas() {
         return cuotasMinimas;
     }
-    
-    public void setCuotasMinimas(Long cuotasMinimas) {
+
+    public void setCuotasMinimas(Integer cuotasMinimas) {
         this.cuotasMinimas = cuotasMinimas;
     }
-    
-    public Long getCuotasMaximas() {
+
+    public Integer getCuotasMaximas() {
         return cuotasMaximas;
     }
-    
-    public void setCuotasMaximas(Long cuotasMaximas) {
+
+    public void setCuotasMaximas(Integer cuotasMaximas) {
         this.cuotasMaximas = cuotasMaximas;
     }
-    
+
     public BigDecimal getCapitalMinimo() {
         return capitalMinimo;
     }
-    
+
     public void setCapitalMinimo(BigDecimal capitalMinimo) {
         this.capitalMinimo = capitalMinimo;
     }
-    
+
     public BigDecimal getCapitalMaximo() {
         return capitalMaximo;
     }
-    
+
     public void setCapitalMaximo(BigDecimal capitalMaximo) {
         this.capitalMaximo = capitalMaximo;
     }
-    
+
     public LocalDate getFechaAlta() {
         return fechaAlta;
     }
-    
+
     public void setFechaAlta(LocalDate fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
-    
+
     public UsuarioEntity getUsuario() {
         return usuario;
     }
-    
+
     public void setUsuario(UsuarioEntity usuario) {
         this.usuario = usuario;
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;

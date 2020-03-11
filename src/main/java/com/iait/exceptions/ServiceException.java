@@ -5,6 +5,7 @@ public abstract class ServiceException extends RuntimeException {
     private static final long serialVersionUID = 1L;
     
     public static final int SERVICE_EXCEPTION_NOT_FOUND = 100;
+    public static final int SERVICE_EXCEPTION_DATA_INTEGRITY_VIOLATION = 200;
     
     public ServiceException(String mensaje, Object... args) {
         super(String.format(mensaje, args));

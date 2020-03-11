@@ -1,6 +1,6 @@
 package com.iait.entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -35,7 +35,7 @@ public class PersonaEntity {
     private String nombreApellido;
     
     @Column(name = "fecha_nacimiento", nullable = false)
-    private LocalDateTime fechaNacimiento;
+    private LocalDate fechaNacimiento;
     
     @Convert(converter = GeneroConverter.class)
     @Column(name = "genero", nullable = false, length = 1)
@@ -87,11 +87,11 @@ public class PersonaEntity {
         this.nombreApellido = nombreApellido;
     }
     
-    public LocalDateTime getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
     
-    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
     

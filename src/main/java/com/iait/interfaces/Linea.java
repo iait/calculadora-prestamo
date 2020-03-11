@@ -14,9 +14,9 @@ public interface Linea {
     
     BigDecimal getTasaMaxima();
     
-    Long getCuotasMinimas();
+    Integer getCuotasMinimas();
     
-    Long getCuotasMaximas();
+    Integer getCuotasMaximas();
     
     BigDecimal getCapitalMinimo();
     
