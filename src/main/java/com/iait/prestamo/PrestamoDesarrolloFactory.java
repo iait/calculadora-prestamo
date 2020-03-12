@@ -8,24 +8,24 @@ import com.iait.enums.SistemaAmortizacionEnum;
 @Service
 public class PrestamoDesarrolloFactory {
 
-    private static PrestamoDesarrolloAleman ALEMAN_BEAN;
-    private static PrestamoDesarrolloFrances FRANCES_BEAN;
+    private static PrestamoDesarrolloAleman DESARROLLO_ALEMAN;
+    private static PrestamoDesarrolloFrances DESARROLLO_FRANCES;
     
     @Autowired
     public PrestamoDesarrolloFactory(
-            PrestamoDesarrolloAleman prestamoDesarrolloAlemanBean,
-            PrestamoDesarrolloFrances prestamoDesarrolloFrancesBean) {
+            PrestamoDesarrolloAleman prestamoDesarrolloAleman,
+            PrestamoDesarrolloFrances prestamoDesarrolloFrances) {
         
-        PrestamoDesarrolloFactory.ALEMAN_BEAN = prestamoDesarrolloAlemanBean;
-        PrestamoDesarrolloFactory.FRANCES_BEAN = prestamoDesarrolloFrancesBean;
+        PrestamoDesarrolloFactory.DESARROLLO_ALEMAN = prestamoDesarrolloAleman;
+        PrestamoDesarrolloFactory.DESARROLLO_FRANCES = prestamoDesarrolloFrances;
     }
     
     public static PrestamoDesarrolloBase create(SistemaAmortizacionEnum sistemaAmortizacion) {
         switch (sistemaAmortizacion) {
             case SISTEMA_ALEMAN:
-                return ALEMAN_BEAN;
+                return DESARROLLO_ALEMAN;
             case SISTEMA_FRANCES:
-                return FRANCES_BEAN;
+                return DESARROLLO_FRANCES;
             default:
                 throw new IllegalArgumentException(
                         String.format("EL SISTEMA NO ESTA IMPLMENTADO: %s", sistemaAmortizacion));

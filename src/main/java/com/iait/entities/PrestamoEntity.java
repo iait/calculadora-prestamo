@@ -67,7 +67,7 @@ public class PrestamoEntity {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns({
-            @JoinColumn(name = "usuario_tipo_documento", 
+            @JoinColumn(name = "usuario_tipo_documento_id", 
                     referencedColumnName = "id_tipodocumento", nullable = false),
             @JoinColumn(name = "usuario_numero_documento", 
                     referencedColumnName = "numero_documento", nullable = false)

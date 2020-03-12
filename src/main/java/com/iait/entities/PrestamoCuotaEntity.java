@@ -46,6 +46,7 @@ public class PrestamoCuotaEntity {
     private BigDecimal saldoCapital;
     
     public PrestamoCuotaEntity() {
+        this.pk = new PrestamoCuotaPkEntity();
     }
     
     public PrestamoEntity getPrestamo() {

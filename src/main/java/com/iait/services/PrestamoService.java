@@ -53,18 +53,17 @@ public class PrestamoService {
     @Transactional
     public PrestamoEntity nuevo(Prestamo prestamo, UsuarioEntity usuarioEntity) {
         
-        final long id = prestamoRepository.getMax().orElse(0L) +  1L;
+        final Long id = prestamoRepository.getMax().orElse(0L) +  1L;
         
         final LineaEntity linea = lineaRepository.findById(prestamo.getLineaId()).orElseThrow(
                 ExceptionUtils.notFoundExceptionSupplier(
                         "NO EXISTE UNA LINEA CON ID %s", prestamo.getLineaId()));
 
-        final PersonaEntity persona = personaRepository.findById(
-                        new PersonaPkEntity(
-                                prestamo.getDocumentoTipoId(), prestamo.getNumeroDocumento()))
-                .orElseThrow(
-                        ExceptionUtils.notFoundExceptionSupplier(
-                                "NO EXISTE UNA LINEA CON ID %s", prestamo.getLineaId()));
+        PersonaPkEntity personaPk = new PersonaPkEntity(
+                prestamo.getDocumentoTipoId(), prestamo.getNumeroDocumento());
+        final PersonaEntity persona = personaRepository.findById(personaPk).orElseThrow(
+                ExceptionUtils.notFoundExceptionSupplier(
+                        "NO EXISTE UNA PERSONA CON ID %s", personaPk));
         
         // *** VALIDACIONES RESPECTO DE LA LINEA DE PRESTAMO
         
@@ -79,7 +78,7 @@ public class PrestamoService {
             tasa = convertirTasaEfectivaEnNominal(tasa, modulo, dias);
         }
         
-        if (tasa.compareTo(linea.getTasaMinima()) == -1) {
+        if (tasa.compareTo(linea.getTasaMinima()) < 0) {
             throw new DataIntegrityViolationServiceException(
                     "LA TASA [%s] ES MENOR A LA ADMITIDA EN LA LINEA: %s %s", 
                     tasa,
@@ -87,7 +86,7 @@ public class PrestamoService {
                     linea);
         }
 
-        if (tasa.compareTo(linea.getTasaMaxima()) == 1) {
+        if (tasa.compareTo(linea.getTasaMaxima()) > 0) {
             throw new DataIntegrityViolationServiceException(
                     "LA TASA [%s] ES MAYOR A LA ADMITIDA EN LA LINEA: %s %s", 
                     tasa,
@@ -115,7 +114,7 @@ public class PrestamoService {
 
         // VALIDACION: EL TOTAL DE CAPITAL DEL PRESTAMO ESTA EN EL RANGO ADMITIDO DE LA LINEA
         
-        if (prestamo.getCapitalPrestado().compareTo(linea.getCapitalMinimo()) == -1) {
+        if (prestamo.getCapitalPrestado().compareTo(linea.getCapitalMinimo()) < 0) {
             throw new DataIntegrityViolationServiceException(
                     "EL CAPITAL [%s] ES MENOR AL ADMITIDO EN LA LINEA: %s %s", 
                     prestamo.getCapitalPrestado(),
@@ -123,7 +122,7 @@ public class PrestamoService {
                     linea);
         }
 
-        if (prestamo.getCapitalPrestado().compareTo(linea.getCapitalMaximo()) == 1) {
+        if (prestamo.getCapitalPrestado().compareTo(linea.getCapitalMaximo()) > 0) {
             throw new DataIntegrityViolationServiceException(
                     "EL CAPITAL [%s] ES MAYOR AL ADMITIDO EN LA LINEA: %s %s", 
                     prestamo.getCapitalPrestado(),

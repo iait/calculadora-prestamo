@@ -21,7 +21,7 @@ public class PrestamoDesarrolloFrances extends PrestamoDesarrolloBase {
     public PrestamoTotalesCuotas calcular(PrestamoEntity prestamoEntity) {
         
         final long prdAmort = prdAmortDias(prestamoEntity);
-        final List<PrestamoCuota> prestamoCuotas = new ArrayList<PrestamoCuota>();
+        final List<PrestamoCuota> prestamoCuotas = new ArrayList<>();
  
         ConversorTasaFinanciera conversor = new ConversorTasaFinanciera();
         
@@ -57,7 +57,7 @@ public class PrestamoDesarrolloFrances extends PrestamoDesarrolloBase {
         
         prestamoCuotas.add(prestamoPrimeraCuota);
         
-        BigDecimal totalIntereses = BigDecimal.ZERO;
+        BigDecimal totalIntereses = interes;
         for (int i = 1; i < prestamoEntity.getTotalCuotas(); i++) {
 
             fechaVencimiento = fechaVencimiento.plusDays(prdAmort);

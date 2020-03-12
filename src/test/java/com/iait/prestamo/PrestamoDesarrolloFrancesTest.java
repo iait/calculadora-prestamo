@@ -10,7 +10,7 @@ import com.iait.entities.PrestamoEntity;
 import com.iait.enums.UnidadAmortizacionEnum;
 import com.iait.prestamo.PrestamoDesarrolloBase.PrestamoTotalesCuotas;
 
-public class PrestamoDesarrolloFrancesBeanTest {
+public class PrestamoDesarrolloFrancesTest {
 
     @Test
     public void givenPrestamoEntity_thenTblAmort12Cuotas() {
@@ -26,11 +26,11 @@ public class PrestamoDesarrolloFrancesBeanTest {
         prestamoEntity.setTasaModulo(365);
         prestamoEntity.setAmortizacionPeriodo(30);
         prestamoEntity.setAmortizacionUnidad(UnidadAmortizacionEnum.DIA);
-        prestamoEntity.setCapitalPrestado(BigDecimal.valueOf(100000));
+        prestamoEntity.setCapitalPrestado(BigDecimal.valueOf(100_000));
         prestamoEntity.setTotalCuotas(12);
         
-        PrestamoDesarrolloFrances bean = new PrestamoDesarrolloFrances();
-        PrestamoTotalesCuotas prestamoTotalesCuotas = bean.calcular(prestamoEntity);
+        PrestamoDesarrolloFrances desarrollo = new PrestamoDesarrolloFrances();
+        PrestamoTotalesCuotas prestamoTotalesCuotas = desarrollo.calcular(prestamoEntity);
         
         Assertions.assertThat(prestamoTotalesCuotas.getCuotas()).hasSize(12);
         

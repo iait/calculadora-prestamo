@@ -27,9 +27,7 @@ import com.iait.testutils.ITestCfg;
 @ContextConfiguration(classes = PrestamoManagerIT.TestCfg.class)
 public class PrestamoManagerIT {
     
-    @ComponentScan(basePackages = { 
-            "com.ait.services", "com.ait.prestamo.managers", 
-            "com.ait.prestamo.beans", "com.ait.converters" })
+    @ComponentScan(basePackages = {"com.iait.services", "com.iait.prestamo", "com.iait.converters"})
     public static class TestCfg extends ITestCfg {
         
         @Bean

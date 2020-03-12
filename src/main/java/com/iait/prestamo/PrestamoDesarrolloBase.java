@@ -14,11 +14,11 @@ public abstract class PrestamoDesarrolloBase {
     
     protected static final int ESCALA = 6;
 
-    protected int prdAmortDias(PrestamoEntity prestamo) {
+    protected int prdAmortDias(PrestamoEntity prestamoEntity) {
 
-        int factorPrdAmort = prestamo.getAmortizacionUnidad()
+        int factorPrdAmort = prestamoEntity.getAmortizacionUnidad()
                 .equals(UnidadAmortizacionEnum.DIA) ? 1 : 30;
-        int prdAmort = factorPrdAmort * prestamo.getAmortizacionPeriodo();
+        int prdAmort = factorPrdAmort * prestamoEntity.getAmortizacionPeriodo();
         
         return prdAmort;
     }

@@ -19,7 +19,7 @@ public class PrestamoAmortizacionTask implements Task<PrestamoTotalesCuotas> {
     @Override
     public PrestamoTotalesCuotas execute() {
         PrestamoDesarrolloBase prestamoDesarrollo = PrestamoDesarrolloFactory.create(
-                prestamoEntity.getLinea().getSistemaAmortizacion());
+                prestamoEntity.getSistemaAmortizacion());
         return prestamoDesarrollo.calcular(prestamoEntity);
     }
 
