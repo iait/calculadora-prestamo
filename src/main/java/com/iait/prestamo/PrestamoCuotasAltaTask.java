@@ -3,6 +3,7 @@ package com.iait.prestamo;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.iait.entities.PrestamoEntity;
@@ -11,6 +12,7 @@ import com.iait.services.PrestamoCuotaService;
 import com.iait.task.Task;
 
 @Component
+@Scope("prototype")
 public class PrestamoCuotasAltaTask implements Task<Void> {
 
     @Autowired private PrestamoCuotaService cuotaService;

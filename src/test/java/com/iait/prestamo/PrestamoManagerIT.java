@@ -49,18 +49,8 @@ public class PrestamoManagerIT {
         final Prestamo prestamo = new Prestamo() {
             
             @Override
-            public Integer getTotalCuotas() {
-                return 12;
-            }
-            
-            @Override
-            public Integer getTasaModulo() {
-                return 365;
-            }
-            
-            @Override
-            public BigDecimal getTasaEfectiva() {
-                return BigDecimal.valueOf(35);
+            public Long getDocumentoTipoId() {
+                return 1L;
             }
             
             @Override
@@ -79,13 +69,18 @@ public class PrestamoManagerIT {
             }
             
             @Override
-            public Long getDocumentoTipoId() {
-                return 1L;
+            public BigDecimal getTasaEfectiva() {
+                return BigDecimal.valueOf(35);
             }
             
             @Override
-            public BigDecimal getCapitalPrestado() {
-                return BigDecimal.valueOf(100000);
+            public Integer getTasaModulo() {
+                return 365;
+            }
+            
+            @Override
+            public Integer getAmortizacionPeriodo() {
+                return 30;
             }
             
             @Override
@@ -94,8 +89,13 @@ public class PrestamoManagerIT {
             }
             
             @Override
-            public Integer getAmortizacionPeriodo() {
-                return 30;
+            public BigDecimal getCapitalPrestado() {
+                return BigDecimal.valueOf(100000);
+            }
+            
+            @Override
+            public Integer getTotalCuotas() {
+                return 12;
             }
         };
         

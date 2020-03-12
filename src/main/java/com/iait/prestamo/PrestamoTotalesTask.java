@@ -2,12 +2,14 @@ package com.iait.prestamo;
 
 import java.math.BigDecimal;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.iait.entities.PrestamoEntity;
 import com.iait.task.Task;
 
 @Component
+@Scope("prototype")
 public class PrestamoTotalesTask implements Task<Void> {
 
     private PrestamoEntity prestamoEntity;
