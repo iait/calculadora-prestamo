@@ -19,6 +19,8 @@ public interface Persona {
     public Boolean getEsArgentino();
     
     public String getCorreoElectronico();
+
+    public byte[] getFotoCara();
     
     public Long getLocalidadId();
 

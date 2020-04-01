@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import com.iait.converters.GeneroConverter;
 import com.iait.enums.GeneroEnum;
+import com.querydsl.core.annotations.PropertyType;
+import com.querydsl.core.annotations.QueryType;
 
 @Entity
 @Table(name = "personas")
@@ -55,10 +57,12 @@ public class PersonaEntity {
     @JoinColumn(name = "id_localidad", referencedColumnName = "id_localidad", nullable = false)
     private LocalidadEntity localidad;
     
+    @QueryType(PropertyType.NONE)
     @Column(name = "codigo_postal", nullable = false, length = 10)
     private String codigoPostal;
     
     public PersonaEntity() {
+        this.pk = new PersonaPkEntity();
     }
     
     public TipoDocumentoEntity getTipoDocumento() {
@@ -133,14 +137,7 @@ public class PersonaEntity {
     
     public void setLocalidad(LocalidadEntity localidad) {
         this.localidad = localidad;
-    }
-    
-    public String getCodigoPostal() {
-        return codigoPostal;
-    }
-    
-    public void setCodigoPostal(String codigoPostal) {
-        this.codigoPostal = codigoPostal;
+        this.codigoPostal = localidad.getCodigoPostal();
     }
     
     @Override
