@@ -1,4 +1,4 @@
-package com.iait.task;
+package com.iait.tasks;
 
 public interface Task<T> {
 

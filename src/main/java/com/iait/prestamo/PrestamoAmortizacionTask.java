@@ -5,11 +5,11 @@ import org.springframework.stereotype.Component;
 
 import com.iait.entities.PrestamoEntity;
 import com.iait.prestamo.PrestamoDesarrolloBase.PrestamoTotalesCuotas;
-import com.iait.task.Task;
+import com.iait.tasks.PrestamoTask;
 
 @Component
 @Scope("prototype")
-public class PrestamoAmortizacionTask implements Task<PrestamoTotalesCuotas> {
+public class PrestamoAmortizacionTask implements PrestamoTask<PrestamoTotalesCuotas> {
     
     private PrestamoEntity prestamoEntity;
     

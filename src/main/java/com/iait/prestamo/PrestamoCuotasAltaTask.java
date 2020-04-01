@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 import com.iait.entities.PrestamoEntity;
 import com.iait.interfaces.PrestamoCuota;
 import com.iait.services.PrestamoCuotaService;
-import com.iait.task.Task;
+import com.iait.tasks.PrestamoTask;
 
 @Component
 @Scope("prototype")
-public class PrestamoCuotasAltaTask implements Task<Void> {
+public class PrestamoCuotasAltaTask implements PrestamoTask<Void> {
 
     @Autowired private PrestamoCuotaService cuotaService;
     

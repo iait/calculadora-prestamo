@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.iait.entities.PrestamoEntity;
 import com.iait.entities.UsuarioEntity;
-import com.iait.executor.TaskExecutor;
+import com.iait.executors.PrestamoTaskExecutor;
 import com.iait.interfaces.Prestamo;
 import com.iait.prestamo.PrestamoDesarrolloBase.PrestamoTotalesCuotas;
 
@@ -23,7 +23,7 @@ public class PrestamoManager {
     @Transactional
     public PrestamoEntity nuevo(Prestamo prestamo, UsuarioEntity usuario) {
         
-        final TaskExecutor executor = new TaskExecutor();
+        final PrestamoTaskExecutor executor = new PrestamoTaskExecutor();
         
         PrestamoAltaTask altaTask = altaTaskProvider.get()
                 .setPrestamo(prestamo)

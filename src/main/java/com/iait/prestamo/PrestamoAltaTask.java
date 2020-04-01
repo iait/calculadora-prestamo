@@ -8,11 +8,11 @@ import com.iait.entities.PrestamoEntity;
 import com.iait.entities.UsuarioEntity;
 import com.iait.interfaces.Prestamo;
 import com.iait.services.PrestamoService;
-import com.iait.task.Task;
+import com.iait.tasks.PrestamoTask;
 
 @Component
 @Scope("prototype")
-public class PrestamoAltaTask implements Task<PrestamoEntity> {
+public class PrestamoAltaTask implements PrestamoTask<PrestamoEntity> {
     
     @Autowired private PrestamoService prestamoService;
 

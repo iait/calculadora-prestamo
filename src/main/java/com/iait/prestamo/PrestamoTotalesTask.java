@@ -6,11 +6,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.iait.entities.PrestamoEntity;
-import com.iait.task.Task;
+import com.iait.tasks.PrestamoTask;
 
 @Component
 @Scope("prototype")
-public class PrestamoTotalesTask implements Task<Void> {
+public class PrestamoTotalesTask implements PrestamoTask<Void> {
 
     private PrestamoEntity prestamoEntity;
     
